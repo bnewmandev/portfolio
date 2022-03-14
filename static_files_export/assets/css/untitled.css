@@ -1,0 +1,22 @@
+.cover {
+  object-fit: cover;
+}
+
+hr.star-light:after {
+  content: "" !important;
+}
+
+hr.star-light:after, hr.star-dark:after {
+  position: relative;
+  top: -0.8em;
+  display: inline-block;
+  padding: 0 .25em;
+  content: "f005";
+  font-family: FontAwesome;
+  font-size: 2em;
+}
+
+hr.star-dark:after {
+  content: "" !important;
+}
+
