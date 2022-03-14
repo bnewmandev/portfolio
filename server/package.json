@@ -3,5 +3,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "author": "Ben Newman",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "debug": "nodemon server.js"
+  }
 }
