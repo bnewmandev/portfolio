@@ -1,0 +1,15 @@
+<div class="mb-3 p-3 card">
+    <div class="card-body">
+        <h4 class="card-title"><%= article.title %></h4>
+        <div class="card-subtitle text-muted mb-3">
+            <%= new Date(article.createdAt).toLocaleDateString() %>
+        </div>
+        <div class="card-text mb-3">
+            <%= article.description %>
+        </div>
+        <a class="btn btn-primary" href="/articles/<%= article.id %>">Read More</a>
+        <form class="d-inline" action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger adminbutton" type="submit">Delete</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Home - Ben Newman</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+    />
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/assets/css/untitled.css"/>
+</head>
+<body>
+<%- include("../partials/header.ejs") %>
+<header class="text-center text-black bg-white masthead">
+    <div class="container min-vh-100">
+        <h1><%= article.title %></h1>
+        <div class="text-muted mb-2"><%= article.createdAt.toLocaleDateString() %></div>
+        <a class="btn btn-secondary mb-5" href="/articles">All Posts</a>
+        <a class="btn btn-info mb-5 adminbutton" href="/articles/edit/<%= article.id %>">Edit Post</a>
+        <div>
+            <%- article.sanitizedHTML %>
+        </div>
+    </div>
+</header>
+<%- include("../partials/footer.ejs") %>
+<script src="/assets/js/checkCookies.js"></script>
+</body>
+
+</html>

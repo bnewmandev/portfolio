@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Ben Newman</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/untitled-1.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="72">
+<%- include("../partials/header.ejs") %>
+
+<div style="margin-top: 200px; margin-bottom: 80px;" class="container">
+    <div class="intro">
+        <h2 class="text-center mb-4">Latest Posts</h2>
+        <div class="col text-center">
+            <a href="/articles/new" class="btn btn-success mb-5 adminbutton">New Article</a>
+        </div>
+    </div>
+    <div class="flex-column align-items-center">
+        <% articles.forEach(function(article){ %>
+            <%- include("../partials/articlePreview.ejs", {article: article}); %>
+        <% }); %>
+    </div>
+
+</div>
+</section>
+<%- include("../partials/footer.ejs") %>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/freelancer.js"></script>
+<script src="/assets/js/checkCookies.js"></script>
+</body>
+
+</html>
