@@ -8,6 +8,7 @@
     "trailing-comma": [
       true
     ],
+    "no-shadowed-variable": false,
     "no-console": false
   },
   "rulesDirectory": []

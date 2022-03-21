@@ -22,15 +22,18 @@
 <body>
 <%- include("../partials/header.ejs") %>
 <header class="text-center text-black bg-white masthead">
-    <div class="container">
+    <div class="container min-vh-100">
         <h1><%= article.title %></h1>
         <div class="text-muted mb-2"><%= article.createdAt.toLocaleDateString() %></div>
         <a class="btn btn-secondary mb-5" href="/articles">All Posts</a>
-        <a class="btn btn-info mb-5" href="/articles/edit/<%= article.id %>">Edit Post</a>
+        <a class="btn btn-info mb-5 adminbutton" href="/articles/edit/<%= article.id %>">Edit Post</a>
         <div>
             <%- article.sanitizedHTML %>
         </div>
     </div>
 </header>
+<%- include("../partials/footer.ejs") %>
+<script src="/assets/js/checkCookies.js"></script>
 </body>
+
 </html>

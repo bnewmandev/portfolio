@@ -1,21 +1,41 @@
 import express from "express";
 
 import Article from "../models/article";
+import { AuthRequest, AuthResponse } from "../types";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
+
+const authenticateMiddleware = (
+  req: AuthRequest,
+  res: AuthResponse,
+  next: express.NextFunction
+) => {
+  if (!req.signedCookies.secureCookie) return res.sendStatus(401);
+  const token = req.signedCookies.secureCookie;
+  jwt.verify(
+    token,
+    process.env.JWT_KEY!,
+    (err: any, user: string | jwt.JwtPayload | undefined) => {
+      if (err) return res.sendStatus(403);
+      req.user = user;
+      next();
+    }
+  );
+};
 
 router.get("/", async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "descending" });
   res.render("blog", { articles });
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", authenticateMiddleware, (req, res) => {
   res.render("newArticle", { article: new Article() });
 });
 
-router.get("/edit/:id", async (req, res) => {
+router.get("/edit/:id", authenticateMiddleware, async (req, res) => {
   const article = await Article.findById(req.params.id);
-  res.render("editArticle", { article: article });
+  res.render("editArticle", { article });
 });
 
 router.get("/:id", async (req, res) => {
@@ -28,6 +48,7 @@ router.get("/:id", async (req, res) => {
 
 router.post(
   "/",
+  authenticateMiddleware,
   async (req, res, next) => {
     req.body.article = new Article();
     next();
@@ -37,6 +58,7 @@ router.post(
 
 router.put(
   "/:id",
+  authenticateMiddleware,
   async (req, res, next) => {
     req.body.article = await Article.findById(req.params.id);
     next();
@@ -44,7 +66,7 @@ router.put(
   saveAndRedirect("edit")
 );
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authenticateMiddleware, async (req, res) => {
   await Article.findByIdAndDelete(req.params.id);
   res.redirect("/articles");
 });
