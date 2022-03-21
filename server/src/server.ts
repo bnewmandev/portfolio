@@ -42,9 +42,8 @@ app.post("/login", (req, res) => {
           if (err) res.sendStatus(500);
           else {
             res.cookie("secureCookie", token, {
-              signed: true,
-              secure: true,
-              httpOnly: true,
+              // secure: true,
+              // httpOnly: true,
               expires: dayjs().add(1, "days").toDate(),
             });
             res.cookie("showAllButtons", "true", {
