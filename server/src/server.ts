@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 import rootRouter from "./routes/root";
 import articleRouter from "./routes/articles";
 
-const port = 8080;
+const port = process.env.PORT;
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI!);
