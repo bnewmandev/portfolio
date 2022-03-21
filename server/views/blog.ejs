@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Ben Newman</title>
+
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
@@ -16,33 +17,22 @@
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="72">
 <%- include("../partials/header.ejs") %>
-<section class="article-list">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Latest Posts</h2>
-            <p class="text-center"></p>
-        </div>
-        <div class="row articles">
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/desk.jpg"/></a>
-                <h3 class="name">Article Title</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                    aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a
-                        class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/building.jpg"/></a>
-                <h3 class="name">Article Title</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                    aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a
-                        class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/loft.jpg"/></a>
-                <h3 class="name">Article Title</h3>
-                <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                    aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a
-                        class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+
+<div style="margin-top: 200px; margin-bottom: 80px;" class="container">
+    <div class="intro">
+        <h2 class="text-center mb-4">Latest Posts</h2>
+        <div class="col text-center">
+            <a href="/articles/new" class="btn btn-success mb-5">New Article</a>
         </div>
     </div>
+    <div class="row articles">
+        <% console.log(articles) %>
+        <% articles.forEach(function(article){ %>
+            <%- include("../partials/articlePreview.ejs", {article: article}); %>
+        <% }); %>
+
+    </div>
+</div>
 </section>
 <%- include("../partials/footer.ejs") %>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

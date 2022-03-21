@@ -1,0 +1,11 @@
+<div class="col-sm-2 col-md-12 item mb-3 p-3 card m-5">
+    <div class="card-body">
+        <h4 class="card-title"><%= article.title %></h4>
+        <div class="card-subtitle text-muted mb-3">
+            <%= new Date(article.createdAt).toLocaleDateString() %>
+        </div>
+        <div class="card-text">
+            <%= article.description %>
+        </div>
+    </div>
+</div>
