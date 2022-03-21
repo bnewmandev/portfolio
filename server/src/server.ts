@@ -58,6 +58,10 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get("/cookies", (req, res) => {
+  res.json({ unsigned: req.cookies, signed: req.signedCookies });
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
