@@ -11,8 +11,8 @@ const authenticateMiddleware = (
   res: AuthResponse,
   next: express.NextFunction
 ) => {
-  if (!req.signedCookies.secureCookie) return res.sendStatus(401);
-  const token = req.signedCookies.secureCookie;
+  if (!req.cookies.secureCookie) return res.sendStatus(401);
+  const token = req.cookies.secureCookie;
   jwt.verify(
     token,
     process.env.JWT_KEY!,
