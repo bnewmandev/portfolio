@@ -25,13 +25,12 @@
             <a href="/articles/new" class="btn btn-success mb-5">New Article</a>
         </div>
     </div>
-    <div class="row articles">
-        <% console.log(articles) %>
+    <div class="flex-column align-items-center">
         <% articles.forEach(function(article){ %>
             <%- include("../partials/articlePreview.ejs", {article: article}); %>
         <% }); %>
-
     </div>
+
 </div>
 </section>
 <%- include("../partials/footer.ejs") %>
