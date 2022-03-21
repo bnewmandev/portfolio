@@ -34,4 +34,10 @@ router.get("/", (req, res) => {
   res.render("blog", { articles });
 });
 
+router.get("/new", (req, res) => {
+  res.render("newArticle");
+});
+
+router.post("/", (req, res) => {});
+
 export = router;
