@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   console.log(data);
-  res.render("index", { items: data });
-});
+  res.render("index", {items: data});
 
+});
 export = router;
