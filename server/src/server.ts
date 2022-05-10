@@ -29,6 +29,10 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/", (req, res) => {
+  res.render("../views/index");
+});
+
 app.post("/login", (req, res) => {
   bcrypt.compare(req.body.password, process.env.ADMIN_HASH!, (err, result) => {
     console.log(result);
