@@ -1,0 +1,23 @@
+[
+    {
+        "id": "this-website",
+        "img": "/assets/img/portfolio/carousel-gf1ae6b9cf_1280.png",
+        "title": "Portfolio Website",
+        "text": "The frontend for this website was created using bootstrap and EJS and hosted on heroku. The backend uses node for authentication of the dev diary edit routes and in the future I will implement the ability to edit the index page through a browser.",
+        "link": "https://github.com/bnewmandev/portfolio"
+    },
+    {
+        "id": "commute-guide",
+        "img": "/assets/img/portfolio/phone-gb99e19a75_1280.jpg",
+        "title": "Commute Guide",
+        "text": "This project is currently in the early stages of development. The basic concept is an app which can provide public transport information in relation to a daily commute",
+        "link": "https://github.com/bnewmandev/commute-guide"
+    },
+    {
+        "id": "code-mode",
+        "img": "/assets/img/portfolio/codingsymbol.png",
+        "title": "Code Mode",
+        "text": "Code Mode is an extension for MS Word. The extension aims to add a toggleable button with which one can switch between a predefined 'coding' style (i.e. different background color and a monospaced font) and normal text",
+        "link": "https://github.com/bnewmandev/codemode"
+    }
+]
