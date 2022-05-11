@@ -6,7 +6,6 @@ const express_1 = __importDefault(require("express"));
 const portfolioData_json_1 = __importDefault(require("../../portfolioData.json"));
 const router = express_1.default.Router();
 router.get("/", (req, res) => {
-    console.log(portfolioData_json_1.default);
     res.render("index", { items: portfolioData_json_1.default });
 });
 module.exports = router;

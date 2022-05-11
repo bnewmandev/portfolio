@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 
 import rootRouter from "./routes/root";
 import articleRouter from "./routes/articles";
+import projectRouter from "./routes/projects";
 
 const port = process.env.PORT;
 const app = express();
@@ -24,13 +25,10 @@ app.use(methodOverride("_method"));
 
 app.use("/", rootRouter);
 app.use("/articles", articleRouter);
+app.use("/projects", projectRouter);
 
 app.get("/login", (req, res) => {
   res.render("login");
-});
-
-app.get("/", (req, res) => {
-  res.render("../views/index");
 });
 
 app.post("/login", (req, res) => {
