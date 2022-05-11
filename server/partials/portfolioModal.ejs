@@ -45,7 +45,21 @@
                         data-bs-dismiss="modal"
                 ><i class="fa fa-close pe-none"></i>&nbsp;Close Project</a
                 >
+
             </div>
+            <a
+                    class="btn btn-info btn-lg mx-auto rounded-pill adminbutton mb-5"
+                    href="/projects/edit/<%= item.id %>"
+            >Edit Project</a
+            >
+            <form
+                    class="d-inline"
+                    action="/projects/<%= item.id %>?_method=DELETE"
+                    method="POST"
+            >
+                <button class="btn btn-danger btn-lg mx-auto rounded-pill adminbutton mb-5" type="submit">Delete Project
+                </button>
+            </form>
         </div>
     </div>
 </div>

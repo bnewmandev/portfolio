@@ -13,6 +13,7 @@ const dayjs_1 = __importDefault(require("dayjs"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const root_1 = __importDefault(require("./routes/root"));
 const articles_1 = __importDefault(require("./routes/articles"));
+const projects_1 = __importDefault(require("./routes/projects"));
 const port = process.env.PORT;
 const app = (0, express_1.default)();
 mongoose_1.default.connect(process.env.MONGODB_URI);
@@ -23,11 +24,9 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, method_override_1.default)("_method"));
 app.use("/", root_1.default);
 app.use("/articles", articles_1.default);
+app.use("/projects", projects_1.default);
 app.get("/login", (req, res) => {
     res.render("login");
-});
-app.get("/", (req, res) => {
-    res.render("../views/index");
 });
 app.post("/login", (req, res) => {
     bcrypt_1.default.compare(req.body.password, process.env.ADMIN_HASH, (err, result) => {

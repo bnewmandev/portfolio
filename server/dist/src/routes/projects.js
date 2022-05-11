@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const express_1 = __importDefault(require("express"));
-const article_1 = __importDefault(require("../models/article"));
+const project_1 = __importDefault(require("../models/project"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const router = express_1.default.Router();
 const authenticateMiddleware = (req, res, next) => {
@@ -27,47 +27,50 @@ const authenticateMiddleware = (req, res, next) => {
     });
 };
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const articles = yield article_1.default.find().sort({ createdAt: "descending" });
-    res.render("blog", { articles });
+    const projects = yield project_1.default.find();
+    res.json(projects);
 }));
 router.get("/new", authenticateMiddleware, (req, res) => {
-    res.render("newArticle", { article: new article_1.default() });
+    res.render("newProject", { item: new project_1.default() });
 });
 router.get("/edit/:id", authenticateMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const article = yield article_1.default.findById(req.params.id);
-    res.render("editArticle", { article });
+    const project = yield project_1.default.findOne({ id: req.params.id });
+    res.render("editProject", { item: project });
 }));
-router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const article = yield article_1.default.findById(req.params.id);
-    if (!article) {
-        res.redirect("/articles");
-    }
-    res.render("fullArticle", { article });
-}));
+// router.get("/:id", async (req, res) => {
+//   const project = await Project.findById(req.params.id);
+//   if (!project) {
+//     res.redirect("/");
+//   }
+//   res.render("fullArticle", { article });
+// });
 router.post("/", authenticateMiddleware, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    req.body.article = new article_1.default();
+    req.body.project = new project_1.default();
     next();
-}), saveAndRedirect("new"));
+}), saveAndRedirect("newProject"));
 router.put("/:id", authenticateMiddleware, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    req.body.article = yield article_1.default.findById(req.params.id);
+    req.body.project = yield project_1.default.findOne({ id: req.params.id });
     next();
-}), saveAndRedirect("edit"));
+}), saveAndRedirect("editProject"));
 router.delete("/:id", authenticateMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield article_1.default.findByIdAndDelete(req.params.id);
-    res.redirect("/articles");
+    yield project_1.default.findOneAndDelete({ id: req.params.id });
+    res.redirect("/");
 }));
 function saveAndRedirect(path) {
     return (req, res) => __awaiter(this, void 0, void 0, function* () {
-        let article = req.body.article;
-        article.title = req.body.title;
-        article.description = req.body.description;
-        article.markdown = req.body.markdown;
+        let project = req.body.project;
+        project.id = req.body.id;
+        project.img = req.body.img;
+        project.title = req.body.title;
+        project.text = req.body.text;
+        project.link = req.body.link;
         try {
-            article = yield article.save();
-            res.redirect(`/articles/${article.id}`);
+            project = yield project.save();
+            res.redirect("/");
         }
         catch (e) {
-            res.render(path, { article });
+            console.log(e);
+            res.render(path, { item: project });
         }
     });
 }

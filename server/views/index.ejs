@@ -32,8 +32,9 @@
     <div class="container">
         <h2 class="text-uppercase text-center text-secondary">Portfolio</h2>
         <hr class="star-dark mb-5"/>
+        <a href="/projects/new" class="btn btn-success mb-5 adminbutton">New Project</a>
         <div class="row">
-            <% items.forEach(function(item){ %>
+            <% projects.forEach(function(item){ %>
                 <%- include("../partials/portfolioItem.ejs", {item:item}); %>
             <% }); %>
         </div>
@@ -84,7 +85,7 @@
         ></a>
 </div>
 
-<% items.forEach(function(item){ %>
+<% projects.forEach(function(item){ %>
     <%- include("../partials/portfolioModal.ejs", {item:item}); %>
 <% }); %>
 
