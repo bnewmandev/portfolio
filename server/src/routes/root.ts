@@ -1,5 +1,4 @@
 import express from "express";
-import data from "../../portfolioData.json";
 import Project from "../models/project";
 
 const router = express.Router();

@@ -72,3 +72,4 @@ function saveAndRedirect(path) {
     });
 }
 module.exports = router;
+//# sourceMappingURL=articles.js.map

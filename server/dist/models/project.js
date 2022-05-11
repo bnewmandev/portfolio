@@ -26,3 +26,4 @@ const projectSchema = new mongoose_1.default.Schema({
     },
 });
 module.exports = mongoose_1.default.model("Project", projectSchema);
+//# sourceMappingURL=project.js.map

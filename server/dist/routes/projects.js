@@ -26,17 +26,17 @@ const authenticateMiddleware = (req, res, next) => {
         next();
     });
 };
-// router.get("/", async (req, res) => {
-//   const articles = await Article.find().sort({ createdAt: "descending" });
-//   res.render("blog", { articles });
-// });
+router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const projects = yield project_1.default.find();
+    res.json(projects);
+}));
 router.get("/new", authenticateMiddleware, (req, res) => {
     res.render("newProject", { item: new project_1.default() });
 });
-// router.get("/edit/:id", authenticateMiddleware, async (req, res) => {
-//   const article = await Article.findById(req.params.id);
-//   res.render("editArticle", { article });
-// });
+router.get("/edit/:id", authenticateMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const project = yield project_1.default.findOne({ id: req.params.id });
+    res.render("editProject", { item: project });
+}));
 // router.get("/:id", async (req, res) => {
 //   const project = await Project.findById(req.params.id);
 //   if (!project) {
@@ -47,13 +47,13 @@ router.get("/new", authenticateMiddleware, (req, res) => {
 router.post("/", authenticateMiddleware, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     req.body.project = new project_1.default();
     next();
-}), saveAndRedirect("new"));
+}), saveAndRedirect("newProject"));
 router.put("/:id", authenticateMiddleware, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    req.body.project = yield project_1.default.findById(req.params.id);
+    req.body.project = yield project_1.default.findOne({ id: req.params.id });
     next();
-}), saveAndRedirect("edit"));
+}), saveAndRedirect("editProject"));
 router.delete("/:id", authenticateMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield project_1.default.findByIdAndDelete(req.params.id);
+    yield project_1.default.findOneAndDelete({ id: req.params.id });
     res.redirect("/");
 }));
 function saveAndRedirect(path) {
@@ -70,8 +70,9 @@ function saveAndRedirect(path) {
         }
         catch (e) {
             console.log(e);
-            res.render(path, { project });
+            res.render(path, { item: project });
         }
     });
 }
 module.exports = router;
+//# sourceMappingURL=projects.js.map

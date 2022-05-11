@@ -37,3 +37,4 @@ articleSchema.pre("validate", function (next) {
     next();
 });
 module.exports = mongoose_1.default.model("Article", articleSchema);
+//# sourceMappingURL=article.js.map
